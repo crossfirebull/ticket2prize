@@ -1,0 +1,210 @@
+<mxfile host="app.diagrams.net" modified="2023-04-27T03:55:09.182Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36" etag="_uaLICnkV_ebQUZDRj7j" version="21.1.5" type="device">
+  <diagram name="Page-1" id="8m1xeZ74WPoc47oj-XzI">
+    <mxGraphModel dx="1461" dy="554" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="l-1820LyCe-N_Ln-CQOn-50" value="" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="140" y="10" width="1020" height="520" as="geometry" />
+        </mxCell>
+        <mxCell id="wk7eTrAV6IlMwg5iZ7dJ-2" value="Actor" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" parent="1" vertex="1">
+          <mxGeometry x="55" y="380" width="30" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="wk7eTrAV6IlMwg5iZ7dJ-3" value="" style="rounded=0;html=1;jettySize=auto;orthogonalLoop=1;fontSize=11;endArrow=block;endFill=0;endSize=8;strokeWidth=1;shadow=0;labelBackgroundColor=none;edgeStyle=orthogonalEdgeStyle;" parent="1" source="wk7eTrAV6IlMwg5iZ7dJ-4" target="wk7eTrAV6IlMwg5iZ7dJ-6" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="wk7eTrAV6IlMwg5iZ7dJ-4" value="kiosk processes tickets" style="rounded=1;whiteSpace=wrap;html=1;fontSize=12;glass=0;strokeWidth=1;shadow=0;" parent="1" vertex="1">
+          <mxGeometry x="10" y="200" width="120" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="wk7eTrAV6IlMwg5iZ7dJ-5" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="wk7eTrAV6IlMwg5iZ7dJ-6" target="wk7eTrAV6IlMwg5iZ7dJ-9" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="wk7eTrAV6IlMwg5iZ7dJ-6" value="Kiosk dispenses ticket count along with QRC" style="rhombus;whiteSpace=wrap;html=1;shadow=0;fontFamily=Helvetica;fontSize=12;align=center;strokeWidth=1;spacing=6;spacingTop=-4;" parent="1" vertex="1">
+          <mxGeometry x="20" y="40" width="100" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="wk7eTrAV6IlMwg5iZ7dJ-7" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="wk7eTrAV6IlMwg5iZ7dJ-8" target="wk7eTrAV6IlMwg5iZ7dJ-4" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="wk7eTrAV6IlMwg5iZ7dJ-8" value="User inserts tickets manually into kiosk" style="ellipse;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="10" y="280" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="wk7eTrAV6IlMwg5iZ7dJ-9" value="User scans QRC" style="rhombus;whiteSpace=wrap;html=1;shadow=0;fontFamily=Helvetica;fontSize=12;align=center;strokeWidth=1;spacing=6;spacingTop=-4;" parent="1" vertex="1">
+          <mxGeometry x="170" y="40" width="100" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="wk7eTrAV6IlMwg5iZ7dJ-10" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" parent="1" source="wk7eTrAV6IlMwg5iZ7dJ-9" target="wk7eTrAV6IlMwg5iZ7dJ-11" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="300" y="450" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="wk7eTrAV6IlMwg5iZ7dJ-53" value="YES" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="wk7eTrAV6IlMwg5iZ7dJ-10" vertex="1" connectable="0">
+          <mxGeometry x="0.7802" y="4" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="wk7eTrAV6IlMwg5iZ7dJ-11" value="They have an account" style="rounded=1;whiteSpace=wrap;html=1;fontSize=12;glass=0;strokeWidth=1;shadow=0;" parent="1" vertex="1">
+          <mxGeometry x="640" y="60" width="120" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="l-1820LyCe-N_Ln-CQOn-12" value="SAVE" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" parent="1" source="wk7eTrAV6IlMwg5iZ7dJ-14" target="wk7eTrAV6IlMwg5iZ7dJ-36" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="wk7eTrAV6IlMwg5iZ7dJ-14" value="Login &amp;amp; ask user to redeem or save for later" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="830" y="50" width="110" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="wk7eTrAV6IlMwg5iZ7dJ-36" value="Save...You&#39;ve got # tix&lt;br&gt;see you next time" style="ellipse;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="1000" y="40" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="wk7eTrAV6IlMwg5iZ7dJ-41" value="" style="endArrow=none;html=1;rounded=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" parent="1" target="wk7eTrAV6IlMwg5iZ7dJ-9" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="88.33210874357087" y="760" as="sourcePoint" />
+            <mxPoint x="280" y="280" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="wk7eTrAV6IlMwg5iZ7dJ-43" value="QRC makes call to AWS RDS to access inventory database.&lt;br&gt;&lt;br&gt;QRC is saved to DB" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="20" y="850" width="120" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="wk7eTrAV6IlMwg5iZ7dJ-44" value="" style="endArrow=none;html=1;rounded=0;" parent="1" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="90" y="750" as="sourcePoint" />
+            <mxPoint x="360" y="110" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="wk7eTrAV6IlMwg5iZ7dJ-46" value="DB Results and login prompt returned to USER" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="300" y="50" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="wk7eTrAV6IlMwg5iZ7dJ-48" value="Gives ID to employee&lt;br&gt;&lt;br&gt;Employee gives prizes" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="1095" y="730" width="160" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="wk7eTrAV6IlMwg5iZ7dJ-50" value="User browses store adding items to their cart. &lt;br&gt;&lt;br&gt;Ticket count &amp;amp; available inventory updates as they shop" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="795" y="280" width="170" height="105" as="geometry" />
+        </mxCell>
+        <mxCell id="wk7eTrAV6IlMwg5iZ7dJ-51" value="USER completes checkout&amp;nbsp;" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="795" y="440" width="170" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="wk7eTrAV6IlMwg5iZ7dJ-52" value="USER HAS ACCOUNT" style="rhombus;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="470" y="40" width="90" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="wk7eTrAV6IlMwg5iZ7dJ-55" value="NO" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="wk7eTrAV6IlMwg5iZ7dJ-52" target="wk7eTrAV6IlMwg5iZ7dJ-56" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="560" y="210" as="sourcePoint" />
+            <mxPoint x="515" y="170" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="wk7eTrAV6IlMwg5iZ7dJ-56" value="CREATE ACCOUNT" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="455" y="180" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="l-1820LyCe-N_Ln-CQOn-5" value="YES" style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" parent="1" source="wk7eTrAV6IlMwg5iZ7dJ-56" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="650" y="160" as="sourcePoint" />
+            <mxPoint x="700" y="100" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="700" y="210" />
+              <mxPoint x="700" y="150" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="l-1820LyCe-N_Ln-CQOn-6" value="NO" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="514.5" y="240" as="sourcePoint" />
+            <mxPoint x="514.5" y="300" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="l-1820LyCe-N_Ln-CQOn-7" value="CONTINUE AS GUEST" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="455" y="302.5" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="l-1820LyCe-N_Ln-CQOn-9" value="" style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" parent="1" source="wk7eTrAV6IlMwg5iZ7dJ-11" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="780" y="200" as="sourcePoint" />
+            <mxPoint x="830" y="80" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="l-1820LyCe-N_Ln-CQOn-10" value="REDEEM" style="rhombus;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="840" y="180" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="l-1820LyCe-N_Ln-CQOn-11" value="" style="endArrow=classic;html=1;rounded=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="l-1820LyCe-N_Ln-CQOn-7" target="wk7eTrAV6IlMwg5iZ7dJ-50" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="580" y="330" as="sourcePoint" />
+            <mxPoint x="750" y="350" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="l-1820LyCe-N_Ln-CQOn-15" value="REDEEM" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="l-1820LyCe-N_Ln-CQOn-11" connectable="0" vertex="1">
+          <mxGeometry x="-0.1306" y="1" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="l-1820LyCe-N_Ln-CQOn-14" value="REDEEM" style="endArrow=classic;html=1;rounded=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" target="l-1820LyCe-N_Ln-CQOn-10" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="880" y="110" as="sourcePoint" />
+            <mxPoint x="830" y="160" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="l-1820LyCe-N_Ln-CQOn-17" value="" style="endArrow=classic;html=1;rounded=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" parent="1" source="l-1820LyCe-N_Ln-CQOn-10" target="wk7eTrAV6IlMwg5iZ7dJ-50" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="960" y="220" as="sourcePoint" />
+            <mxPoint x="910" y="270" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="l-1820LyCe-N_Ln-CQOn-19" value="Continuous Data Flow&lt;br&gt;Between User and DB" style="shape=link;html=1;rounded=0;entryX=0;entryY=1;entryDx=0;entryDy=0;" parent="1" target="wk7eTrAV6IlMwg5iZ7dJ-50" edge="1">
+          <mxGeometry width="100" relative="1" as="geometry">
+            <mxPoint x="116" y="779.5797202797203" as="sourcePoint" />
+            <mxPoint x="590" y="570" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="l-1820LyCe-N_Ln-CQOn-20" value="" style="endArrow=classic;html=1;rounded=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" target="wk7eTrAV6IlMwg5iZ7dJ-51" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="880" y="385" as="sourcePoint" />
+            <mxPoint x="830" y="435" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="l-1820LyCe-N_Ln-CQOn-28" value="" style="outlineConnect=0;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;shape=mxgraph.aws3.rds;fillColor=#2E73B8;gradientColor=none;" parent="1" vertex="1">
+          <mxGeometry x="48" y="760" width="72" height="81" as="geometry" />
+        </mxCell>
+        <mxCell id="l-1820LyCe-N_Ln-CQOn-29" value="CHECKOUT&amp;nbsp;&lt;br&gt;FINALIZED" style="endArrow=classic;html=1;rounded=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;exitX=0;exitY=1;exitDx=0;exitDy=0;" parent="1" source="wk7eTrAV6IlMwg5iZ7dJ-51" target="l-1820LyCe-N_Ln-CQOn-28" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="880" y="500" as="sourcePoint" />
+            <mxPoint x="830" y="550" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="l-1820LyCe-N_Ln-CQOn-30" value="DB Returns unique &lt;br&gt;identifier for prize pickup" style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=0.78;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.75;entryY=1;entryDx=0;entryDy=0;" parent="1" source="l-1820LyCe-N_Ln-CQOn-28" target="wk7eTrAV6IlMwg5iZ7dJ-51" edge="1">
+          <mxGeometry x="-0.0058" y="-30" width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="560" y="720" as="sourcePoint" />
+            <mxPoint x="610" y="670" as="targetPoint" />
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="l-1820LyCe-N_Ln-CQOn-38" value="Actor" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" parent="1" vertex="1">
+          <mxGeometry x="1160" y="790" width="30" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="l-1820LyCe-N_Ln-CQOn-39" value="EMPLOYEE" style="text;html=1;strokeColor=none;fillColor=#FFFFFF;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+          <mxGeometry x="1145" y="850.5" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="l-1820LyCe-N_Ln-CQOn-40" value="" style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="wk7eTrAV6IlMwg5iZ7dJ-51" target="wk7eTrAV6IlMwg5iZ7dJ-48" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="740" y="490" as="sourcePoint" />
+            <mxPoint x="1050" y="700" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="l-1820LyCe-N_Ln-CQOn-41" value="" style="endArrow=classic;html=1;rounded=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" parent="1" target="wk7eTrAV6IlMwg5iZ7dJ-36" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="960" y="440" as="sourcePoint" />
+            <mxPoint x="1010" y="390" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="l-1820LyCe-N_Ln-CQOn-44" value="" style="outlineConnect=0;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;shape=mxgraph.aws3.sns;fillColor=#D9A741;gradientColor=none;" parent="1" vertex="1">
+          <mxGeometry x="600" y="774" width="76.5" height="76.5" as="geometry" />
+        </mxCell>
+        <mxCell id="l-1820LyCe-N_Ln-CQOn-45" value="DB sends ID and QR code to SNS" style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=0.78;exitDx=0;exitDy=0;exitPerimeter=0;entryX=-0.022;entryY=0.614;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" source="l-1820LyCe-N_Ln-CQOn-28" target="l-1820LyCe-N_Ln-CQOn-44" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="690" y="680" as="sourcePoint" />
+            <mxPoint x="740" y="630" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="l-1820LyCe-N_Ln-CQOn-46" value="SNS sends ID and prize redemption to employee&amp;nbsp;" style="endArrow=classic;html=1;rounded=0;" parent="1" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="676.5" y="824" as="sourcePoint" />
+            <mxPoint x="1160" y="820" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
