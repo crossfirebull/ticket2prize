@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en-Us">
+	<head>
+		<title>Tickets2Prize website</title>
+		<link href="/favicon.ico" rel="icon" type="image/x-icon" />
+		<link rel="preconnect" href="https://fonts.gstatic.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300&family=Zen+Dots&display=swap" rel="stylesheet">
+		<!-- <link href="https://fonts.googleapis.com/css2?family=Zen+Dots&display=swap" rel="stylesheet"> -->
+		<link rel="stylesheet" href="styles/reset.css" />
+		<link rel="stylesheet" href="styles/main.css" />
+		<link rel="stylesheet" href="styles/navigation.css" />
+		<link rel="stylesheet" href="styles/pastries.css" />
+		<link rel="stylesheet" href="styles/coffee.css" />
+		<link rel="stylesheet" href="styles/beans.css" />
+		<link rel="preconnect" href="https://fonts.gstatic.com">
+	</head>
+	<body>
+		<section>
+			<header data-expanded="not_expanded">
+				<h1>
+					Tickets2Prize
+					<!-- <img src="images/logo.png" /> -->
+				</h1>
+				<span data-action="toggle_navigation"></span>
+				<ul>
+					<li data-action="go_to" data-role="about_us">about us</li>
+					<li data-action="go_to" data-role="browse_pastries">browse pastries</li>
+					<li data-action="go_to" data-role="buy_coffee">buy coffee</li>
+					<li data-action="go_to" data-role="contact_us">contact us</li>
+				</ul>
+				<aside data-action="attempt_login">CART</aside> <!-- We will need to make an api call to forward it to cart, i believe. I'll discuss further in class by what i mean. -->
+			</header>
+			<div class="main_image"></div> <!-- we need to upload a background image to the folder, and i should be able to upload it on here, explain further in class --> 
+
+			<span data-role2="special_highlight" data-action="go_to" data-role="browse_prize">
+			Tickets Amount
+		<script src="https://randojs.com/1.0.0.js"></script>
+        <script>
+            function showRandomNumber(){
+                document.getElementById("myNumber").innerHTML = rando(0, 999);
+            }
+        </script>
+      	  <style>
+            #myNumber{
+                font-size:50px;
+                text-align:left center;
+                margin:50px auto;
+                font-family:Arial, sans-serif;
+            }
+       	 </style>
+    </head>
+    <body onload="showRandomNumber();">
+        <aside id="myNumber"></aside>	
+				<div></div>
+			</span>
+			<main>
+
+				<section data-role="about_us_content">
+					<a name="about_us">back_to_top</a>
+					<h2>YOU ARE A WINNER</h2>
+					<p>
+						Congratulation!
+						<br>
+						It is time to redeem your 	tickets for prize!					
+						<br><br>
+						How it works:										<br>
+						1. Scroll down to browse items
+						<br>
+						2. Select items of interest and add it to cart
+						<br>
+						3. When ready go to cart and submit your order and follow prompt
+						<br>
+						4. An attendant will notify you via text messeages when your prize is ready
+
+					</p>
+				</section>
+
+				<section data-role="browse_pastries_content">
+					<a name="browse_pastries">back to top</a>
+					<h2>PRIZES</h2>
+					<aside>
+						Browse through different options of prizes!
+
+<!-- I'm using wordpad, so i'm not too sure if thats the reason why images isn't loading for me -->
+					</aside>
+					<span data-selected="not_selected" data-action="show_all">view all</span>
+					<span data-selected="selected" data-action="show_on_offer">category</span>
+					<output data-role="toast"></output>
+				</section>  <!-- i have no idea what this output does, but once it is upload onto aws, i should be able to inspect it better -->
+
+			
+				<section data-role="contact_us_content">
+					<a name="contact_us">back to top</a>
+					<h2>CONTACT US</h2>
+					<p>
+						123 Any Street, Any Town, USA<br>Tel: +1-800-555-0193
+					</p>
+					<p>
+						Monday-Thursday: 11:00am - 10:00pm<br>Friday-Sunday: 11:00am - 11:00pm
+					</p>
+				</section>
+			</main>
+			<footer>
+				<span>&copy; 2021, Amazon Web Services, Inc. or its Affiliates. All rights reserved.</span>
+
+			</footer>
+		</section>
+		<script src="config.js"></script>
+		<script src="scripts/jquery-3.6.0.min.js"></script>
+		<script src="scripts/main.js"></script>
+		<script src="scripts/navigation.js"></script>
+		<script src="scripts/pastries.js"></script>
+		<script src="scripts/coffee.js"></script>
+	</body>
+</html>
+
