@@ -1,0 +1,318 @@
+ {
+ 	"product_item_arr": [{
+		"product_name_str": "Tootsie Roll",
+		"product_id_str": "a001",
+		"price_in_tickets_int": 5,
+		"description_str": "The chocolate-flavored taffy classic that's been manufactured in the U.S since 1907.",
+		"tag_str_arr": ["candy", "on offer"],
+		"image_path_str": "/path/to/images/candy-tootsie-roll.jpg"
+	},{
+		"product_name_str": "Blue Raspberry Airhead",
+		"product_id_str": "a002",
+		"price_in_tickets_int": 10,
+		"description_str":"Embark on a mouthwatering adventure with Blue Raspberry Airhead Minis - these petite powerhouses deliver a bold and electrifying burst of sweet and tangy goodness that will keep you coming back for another pop of flavor!",
+		"tag_str_arr": ["candy","on offer"],
+		"image_path_str": "/path/to/images/candy-airhead-blue-raspberry.jpg",
+		"special_int": 1
+	},{
+		"product_name_str": "Cherry Airhead",
+		"product_id_str": "a003",
+		"price_in_tickets_int": 10,
+		"description_str": "Experience a burst of fruity bliss with Cherry Airhead Minis - these bite-sized tangy treats are packed with intense flavor that will leave your taste buds craving for more!",
+		"tag_str_arr": ["candy", "on offer"],
+		"image_path_str": "/path/to/images/candy-airhead-cherry.jpg"
+	},{
+		"product_name_str": "Chinese YoYo - Green & Yellow",
+		"product_id_str": "a004",
+		"price_in_tickets_int": 25,
+		"description_str": "Unleash your inner acrobat with this traditional Chinese paper yoyo - extends with a flick of the wrist.",
+		"tag_str_arr": ["yoyo", "on offer"],
+		"image_path_str": "/path/to/images/chinese-yoyo-green-yellow.jpg"
+	},{
+		"product_name_str": "Chinese YoYo - Red & Yellow",
+		"product_id_str": "a005",
+		"price_in_tickets_int": 25,
+		"description_str":"Unleash your inner acrobat with this traditional Chinese paper yoyo - extends with a flick of the wrist.",
+		"tag_str_arr": ["yoyo","on offer"],
+		"image_path_str": "/path/to/images/chinese-yoyo-red-yellow.jpg",
+		"special_int": 1
+	},{
+		"product_name_str": "Glowstick Necklaces - Assorted Colors",
+		"product_id_str": "a006",
+		"price_in_tickets_int": 50,
+		"description_str":"A fun & bright accessory for glow parties, concerts, festivals, fundraisers & special events!",
+		"tag_str_arr": ["glowsticks","on offer"],
+		"image_path_str": "/path/to/images/glowsticks-necklaces-assorted.jpg",
+		"special_int": 1
+	},{
+		"product_name_str": "Wind-up Crab - Green",
+		"product_id_str": "a007",
+		"price_in_tickets_int": 75,
+		"description_str": "Bring a pinch of joy to your day with this adorable wind-up crab - watch as it scuttles and spins, spreading smiles wherever it goes, and reminding you that fun is always just a wind-up away!",
+		"tag_str_arr": ["wind-up", "out of stock"],
+		"image_path_str": "/path/to/images/wind-up-crab-green.jpg"
+	},{
+		"product_name_str": "Wind-up Crab - Orange",
+		"product_id_str": "a008",
+		"price_in_tickets_int": 75,
+		"description_str": "Bring a pinch of joy to your day with this adorable wind-up crab - watch as it scuttles and spins, spreading smiles wherever it goes, and reminding you that fun is always just a wind-up away!",
+		"tag_str_arr": ["wind-up", "on offer"],
+		"image_path_str": "/path/to/images/wind-up-crab-orange.jpg"
+	},{
+		"product_name_str": "Mini Butterfly Popit",
+		"product_id_str": "a009",
+		"price_in_tickets_int": 100,
+		"description_str": "Flutter into a world of sensory delight with this charming butterfly-shaped Popit toy - a captivating way to embrace relaxation and endless popping pleasure!",
+		"tag_str_arr": ["popit", "on offer"],
+		"image_path_str": "/path/to/images/popit-mini-butterfly.jpg"
+	},{
+		"product_name_str": "Mini Crab Popit",
+		"product_id_str": "a010",
+		"price_in_tickets_int": 100,
+		"description_str":"Get your claws on endless entertainment with this adorable crab-shaped Popit toy - a pinch of fun that'll keep you happily popping away!",
+		"tag_str_arr": ["popit","on offer"],
+		"image_path_str": "/path/to/images/popit-mini-crab.jpg",
+		"special_int": 1
+	},{
+		"product_name_str": "Mini Unicorn Popit",
+		"product_id_str": "a011",
+		"price_in_tickets_int": 100,
+		"description_str":"Experience whimsical enchantment in the palm of your hand with this mini unicorn Popit toy - a magical sensory delight that's impossible to resist!",
+		"tag_str_arr": ["popit","on offer"],
+		"image_path_str": "/path/to/images/popit-mini-unicorn.jpg"
+	},{
+		"product_name_str": "Mini Rainbow Flyer",
+		"product_id_str": "a012",
+		"price_in_tickets_int": 150,
+		"description_str": "Add a dash of vibrant fun to your outdoor playtime with this mini rainbow frisbee - it's compact, colorful, and ready to soar through the skies, bringing smiles and laughter wherever it glides!",
+		"tag_str_arr": ["flyer", "on offer"],
+		"image_path_str": "/path/to/images/flying-disc-mini-rainbow.jpg"
+	}{
+		"product_name_str": "Inflatable Beachball - Basketball Design",
+		"product_id_str": "a013",
+		"price_in_tickets_int": 200,
+		"description_str": "Shoot for beachside glory with this slam-dunk-worthy beachball, sporting a basketball design that's a guaranteed swish!",
+		"tag_str_arr": ["beachball", "on offer"],
+		"image_path_str": "/path/to/images/inflatable-beachball-basketball.jpg"
+	},{
+		"product_name_str": "Inflatable Beachball - Bright Design",
+		"product_id_str": "a014",
+		"price_in_tickets_int": 200,
+		"description_str": "Turn up the beach party vibes with this eye-popping neon delight - the ultimate statement-maker for sun-soaked adventures.",
+		"tag_str_arr": ["beachball", "on offer"],
+		"image_path_str": "/path/to/images/inflatable-beachball-bright.jpg",
+		"special_int": 1
+	},{
+		"product_name_str": "Inflatable Beachball - Classic Design",
+		"product_id_str": "a015",
+		"price_in_tickets_int": 200,
+		"description_str": "Unleash the retro vibes and bounce back to beachside fun with this classic-cool beachball.",
+		"tag_str_arr": ["beachball", "on offer"],
+		"image_path_str": "/path/to/images/inflatable-beachball-classic.jpg"
+	},{
+		"product_name_str": "Mini Glider - Blue",
+		"product_id_str": "a016",
+		"price_in_tickets_int": 200,
+		"description_str": "Let your imagination take flight with this mini airplane glider toy - a pocket-sized marvel that soars through the air with grace and precision, turning any open space into your own sky-high adventure zone!",
+		"tag_str_arr": ["glider", "on offer"],
+		"image_path_str": "/path/to/images/glider-mini-blue.jpg"
+	},{
+		"product_name_str": " Mini Glider - Blue & Orange",
+		"product_id_str": "a017",
+		"price_in_tickets_int": 200,
+		"description_str": "Let your imagination take flight with this mini airplane glider toy - a pocket-sized marvel that soars through the air with grace and precision, turning any open space into your own sky-high adventure zone!",
+		"tag_str_arr": ["glider", "on offer"],
+		"image_path_str": "/path/to/images/glider-mini-blue-orange.jpg"
+	},{
+		"product_name_str": "Mini Glider - Red",
+		"product_id_str": "a018",
+		"price_in_tickets_int": 200,
+		"description_str": "Let your imagination take flight with this mini airplane glider toy - a pocket-sized marvel that soars through the air with grace and precision, turning any open space into your own sky-high adventure zone!",
+		"tag_str_arr": ["glider", "on offer"],
+		"image_path_str": "/path/to/images/glider-mini-red.jpg"
+	},{
+		"product_name_str": "Glow Slime - Neon Green",
+		"product_id_str": "a019",
+		"price_in_tickets_int": 250,
+		"description_str": "Dive into a mesmerizing world of gooey wonder with glow slime - it's like holding a galaxy in your hands, as it glows and stretches, offering a sensory experience that's truly out of this world!",
+		"tag_str_arr": ["slime", "on offer"],
+		"image_path_str": "/path/to/images/slime-glow-slime-green.jpg"
+	},{
+		"product_name_str": "Glow Slime - Neon Pink",
+		"product_id_str": "a020",
+		"price_in_tickets_int": 250,
+		"description_str": "Dive into a mesmerizing world of gooey wonder with glow slime - it's like holding a galaxy in your hands, as it glows and stretches, offering a sensory experience that's truly out of this world!",
+		"tag_str_arr": ["slime", "on offer"],
+		"image_path_str": "/path/to/images/slime-glow-slime-pink.jpg"
+	},{
+		"product_name_str": "Light Up YoYo - Red",
+		"product_id_str": "a021",
+		"price_in_tickets_int": 250,
+		"description_str": "Elevate your yoyo skills to a whole new level with this mesmerizing light-up yoyo - its radiant glow and smooth spins will illuminate the darkness and leave a trail of awe wherever you go!",
+		"tag_str_arr": ["yoyo", "on offer"],
+		"image_path_str": "/path/to/images/yoyo-lightup-red.jpg"
+	},{
+		"product_name_str": "Light Up YoYo - Yellow",
+		"product_id_str": "a022",
+		"price_in_tickets_int": 250,
+		"description_str": "Elevate your yoyo skills to a whole new level with this mesmerizing light-up yoyo - its radiant glow and smooth spins will illuminate the darkness and leave a trail of awe wherever you go!",
+		"tag_str_arr": ["yoyo", "on offer"],
+		"image_path_str": "/path/to/images/yoyo-lightup-yellow.jpg"
+	},{
+		"product_name_str": "Mini Sports Balls",
+		"product_id_str": "a023",
+		"price_in_tickets_int": 300,
+		"description_str": "Unleash your inner athlete with this pack of little mini sports balls - it's a powerhouse of fun in a pint-sized package, perfect for playtime anytime, anywhere!",
+		"tag_str_arr": ["sports", "out of stock"],
+		"image_path_str": "/path/to/images/sports-equipment-mini-sports-balls.jpg"
+	},{
+		"product_name_str": "Glitter Slime Lab",
+		"product_id_str": "a024",
+		"price_in_tickets_int": 350,
+		"description_str": "Sparkle, create, and explore with the glitter slime lab - unleash your inner scientist and dive into a world of shimmering concoctions, where imagination and glitter collide in a dazzling display of hands-on fun!",
+		"tag_str_arr": ["slime", "on offer"],
+		"image_path_str": "/path/to/images/slime-glitter-slime-lab.jpg"
+	},{
+		"product_name_str": "Liquid Motion Bubbler",
+		"product_id_str": "a025",
+		"price_in_tickets_int": 500,
+		"description_str":"Get mesmerized by the captivating dance of colors and bubbles with the liquid motion bubbler - a sensory wonder that turns any space into a soothing oasis, providing relaxation and endless visual delight!",
+		"tag_str_arr": ["bubbler","on offer"],
+		"image_path_str": "/path/to/images/liquid-motion-bubbler.jpg",
+		"special_int": 1
+	},{
+		"product_name_str": "Super Mario Bros. - Yoshi Plushie",
+		"product_id_str": "a026",
+		"price_in_tickets_int": 750,
+		"description_str": "Cuddle up with this adorable mini Yoshi plushie - a pint-sized companion bursting with cuteness and ready to embark on countless adventures in the Mushroom Kingdom and beyond!",
+		"tag_str_arr": ["plushie", "on offer"],
+		"image_path_str": "/path/to/images/plushie-small-mario-bros-yoshi.jpg"
+	},{
+		"product_name_str": "Pokemon - Pikachu Plushie",
+		"product_id_str": "a027",
+		"price_in_tickets_int": 750,
+		"description_str": "Get electrified by the undeniable charm of this mini Pikachu plushie - a pocket-sized bundle of joy that brings the magic of Pokémon to your embrace, ready to be your loyal and lovable companion on all your adventures!",
+		"tag_str_arr": ["plushie", "on offer"],
+		"image_path_str": "/path/to/images/plushie-small-pokemon-pikachu.jpg"
+	},{
+		"product_name_str": "Spirited Away - Boh Mouse Plushie",
+		"product_id_str": "a028",
+		"price_in_tickets_int": 750,
+		"description_str": "Bring a touch of whimsy and wonder into your world with this delightful mini Boh Mouse plushie from Spirited Away - a tiny embodiment of enchantment that will capture your heart and transport you to a realm of magical imagination!",
+		"tag_str_arr": ["plushie", "out of stock"],
+		"image_path_str": "/path/to/images/plushie-small-spirited-away-mouse.jpg"
+	}{
+		"product_name_str": "Official NBA Basketball",
+		"product_id_str": "a029",
+		"price_in_tickets_int": 1000,
+		"description_str": "Step up your game with this official NBA basketball.",
+		"tag_str_arr": ["sports", "on offer"],
+		"image_path_str": "/path/to/images/sports-equipment-basketball.jpg"
+	}{
+		"product_name_str": "Official NFL Football",
+		"product_id_str": "a030",
+		"price_in_tickets_int": 1000,
+		"description_str": "Take your game to the gridiron with this official NFL football.",
+		"tag_str_arr": ["sports", "on offer"],
+		"image_path_str": "/path/to/images/sports-equipment-football.jpg"
+	}{
+		"product_name_str": "Official MLS Soccer Ball",
+		"product_id_str": "a031",
+		"price_in_tickets_int": 1000,
+		"description_str": "Kick up your soccer skills with this official MLS soccer ball",
+		"tag_str_arr": ["sports", "on offer"],
+		"image_path_str": "/path/to/images/sports-equipment-soccer-ball.jpg"
+	}{
+		"product_name_str": "Squishmallow - Flamingo",
+		"product_id_str": "a032",
+		"price_in_tickets_int": 1000,
+		"description_str": "Hug, squeeze, and squish your way to pure squishy bliss with this adorable Flamingo Squishmallow.",
+		"tag_str_arr": ["popit", "on offer"],
+		"image_path_str": "/path/to/images/squishmallow-flamingo.jpg"
+	}{
+		"product_name_str": "Squishmallow - Seashell",
+		"product_id_str": "a033",
+		"price_in_tickets_int": 1000,
+		"description_str": "Delight in the magic of the ocean with this seashell Squishmallow.",
+		"tag_str_arr": ["popit", "on offer"],
+		"image_path_str": "/path/to/images/squishmallow-seashell.jpg"
+	}{
+		"product_name_str": "Squishmallow - Whale",
+		"product_id_str": "a034",
+		"price_in_tickets_int": 1000,
+		"description_str": "Dive into a sea of comfort and coziness with this whale Squishmallow.",
+		"tag_str_arr": ["popit", "on offer"],
+		"image_path_str": "/path/to/images/squishmallow-whale.jpg"
+	}{
+		"product_name_str": "Q-Ba-Maze - Lights",
+		"product_id_str": "a035",
+		"price_in_tickets_int": 1500,
+		"description_str": "Immerse yourself in a mesmerizing world of glowing creativity with the Q-Ba-Maze Lights set - build, twist, and turn a labyrinth of illuminated pathways, where imagination and innovation shine bright!",
+		"tag_str_arr": ["qbamaze", "on offer"],
+		"image_path_str": "/path/to/images/q-ba-maze-lights.jpg"
+	}{
+		"product_name_str": "Q-Ba-Maze - Rails",
+		"product_id_str": "a036",
+		"price_in_tickets_int": 1500,
+		"description_str": "Unleash your engineering prowess with the Q-Ba-Maze Rails set - design gravity-defying marble runs that twist, turn, and race through a thrilling maze of tracks, igniting your imagination and challenging your problem-solving skills!",
+		"tag_str_arr": ["qbamaze", "out of stock"],
+		"image_path_str": "/path/to/images/q-ba-maze-rails.jpg"
+	}{
+		"product_name_str": "Q-Ba-Maze - Stunts",
+		"product_id_str": "a037",
+		"price_in_tickets_int": 1500,
+		"description_str": "Prepare for a thrilling spectacle of gravity-defying stunts with the Q-Ba-Maze Stunts set - build jaw-dropping marble roller coasters, loop-de-loops, and daring jumps that defy the laws of physics, and let your creativity take center stage!",
+		"tag_str_arr": ["qbamaze", "on offer"],
+		"image_path_str": "/path/to/images/q-ba-maze-stunts.jpg"
+	}{
+		"product_name_str": "Giant Plushie Dog",
+		"product_id_str": "a038",
+		"price_in_tickets_int": 2000,
+		"description_str": "Snuggle up to this colossal canine companion - a giant dog plushie that's overflowing with cuddles and warmth, providing an abundance of love and comfort in a huggable package!",
+		"tag_str_arr": ["plushie", "on offer"],
+		"image_path_str": "/path/to/images/plushie-giant-dog.jpg"
+	}{
+		"product_name_str": "Giant Plushie Bear",
+		"product_id_str": "a039",
+		"price_in_tickets_int": 2000,
+		"description_str": "Get ready for supersized snuggles with this giant plushie bear - a colossal cuddle buddy that's big on hugs, making every embrace a bear-iffic adventure in cozy companionship!",
+		"tag_str_arr": ["plushie", "out of stock"],
+		"image_path_str": "/path/to/images/plushie-giant-teddy-bear.jpg"
+	}{
+		"product_name_str": "Kids SmartWatch - Spider-man",
+		"product_id_str": "a040",
+		"price_in_tickets_int": 2500,
+		"description_str": "Loaded with kid-friendly features for your child to enjoy smart wearables just like the grown ups! However unlike smartwatches for adults, this watch is designed specifically with kids in mind.",
+		"tag_str_arr": ["smartwatch", "on offer"],
+		"image_path_str": "/path/to/images/smartwatch-spiderman.jpg"
+	}{
+		"product_name_str": "Kids SmartWatch - Trolls World Tour",
+		"product_id_str": "a041",
+		"price_in_tickets_int": 2500,
+		"description_str": "Loaded with kid-friendly features for your child to enjoy smart wearables just like the grown ups! However unlike smartwatches for adults, this watch is designed specifically with kids in mind.",
+		"tag_str_arr": ["smartwatch", "on offer"],
+		"image_path_str": "/path/to/images/smartwatch-trolls-world-tour.jpg"
+	}{
+		"product_name_str": "Nintendo Switch",
+		"product_id_str": "a042",
+		"price_in_tickets_int": 10000,
+		"description_str":"Unlock endless gaming possibilities with the Nintendo Switch - a revolutionary console that seamlessly transitions between handheld and TV modes, delivering immersive gameplay and taking your gaming experience to the next level!",
+		"tag_str_arr": ["console","on offer"],
+		"image_path_str": "/path/to/images/nintendo-switch.jpeg",
+		"special_int": 1
+	}{
+		"product_name_str": "Playstation 4",
+		"product_id_str": "a043",
+		"price_in_tickets_int": 10000,
+		"description_str": "Immerse yourself in the world of extraordinary gaming experiences with the PlayStation 4 - a powerhouse console that pushes boundaries, delivers stunning graphics, and offers a vast library of games, bringing excitement and entertainment right to your fingertips!",
+		"tag_str_arr": ["console", "on offer"],
+		"image_path_str": "/path/to/images/playstation-4.jpeg"
+	}{
+		"product_name_str": "XBox One",
+		"product_id_str": "a044",
+		"price_in_tickets_int": 10000,
+		"description_str": "Enter a realm of gaming excellence with the Xbox One - a cutting-edge console that combines stunning visuals, immersive gameplay, and a world of entertainment options, providing endless hours of excitement and adventure for players of all ages!",
+		"tag_str_arr": ["console", "on offer"],
+		"image_path_str": "/path/to/images/xbox-one.jpg"
+	}]
+}
