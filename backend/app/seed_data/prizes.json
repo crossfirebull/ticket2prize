@@ -1,0 +1,398 @@
+[
+  {
+    "sku": "T2P-001",
+    "name": "Tootsie Roll",
+    "description": "The chocolate-flavored taffy classic that's been manufactured in the U.S since 1907.",
+    "category": "candy",
+    "ticket_cost": 5,
+    "stock": 200,
+    "image": "candy-tootsie-roll.jpg"
+  },
+  {
+    "sku": "T2P-002",
+    "name": "Blue Raspberry Airhead",
+    "description": "Embark on a mouthwatering adventure with Blue Raspberry Airhead Minis - these petite powerhouses deliver a bold and electrifying burst of sweet and tangy goodness that will keep you coming back for another pop of flavor!",
+    "category": "candy",
+    "ticket_cost": 10,
+    "stock": 200,
+    "image": "candy-airhead-blue-raspberry.jpg"
+  },
+  {
+    "sku": "T2P-003",
+    "name": "Cherry Airhead",
+    "description": "Experience a burst of fruity bliss with Cherry Airhead Minis - these bite-sized tangy treats are packed with intense flavor that will leave your taste buds craving for more!",
+    "category": "candy",
+    "ticket_cost": 10,
+    "stock": 200,
+    "image": "candy-airhead-cherry.jpg"
+  },
+  {
+    "sku": "T2P-004",
+    "name": "Chinese YoYo - Green & Yellow",
+    "description": "Unleash your inner acrobat with this traditional Chinese paper yoyo - extends with a flick of the wrist.",
+    "category": "toys",
+    "ticket_cost": 25,
+    "stock": 200,
+    "image": "chinese-yoyo-green-yellow.jpg"
+  },
+  {
+    "sku": "T2P-005",
+    "name": "Chinese YoYo - Red & Yellow",
+    "description": "Unleash your inner acrobat with this traditional Chinese paper yoyo - extends with a flick of the wrist.",
+    "category": "toys",
+    "ticket_cost": 25,
+    "stock": 200,
+    "image": "chinese-yoyo-red-yellow.jpg"
+  },
+  {
+    "sku": "T2P-006",
+    "name": "Glowstick Necklaces - Assorted Colors",
+    "description": "A fun & bright accessory for glow parties, concerts, festivals, fundraisers & special events!",
+    "category": "glow",
+    "ticket_cost": 50,
+    "stock": 200,
+    "image": "glowsticks-necklaces-assorted.jpg"
+  },
+  {
+    "sku": "T2P-007",
+    "name": "Wind-up Crab - Green",
+    "description": "Bring a pinch of joy to your day with this adorable wind-up crab - watch as it scuttles and spins, spreading smiles wherever it goes, and reminding you that fun is always just a wind-up away!",
+    "category": "toys",
+    "ticket_cost": 75,
+    "stock": 0,
+    "image": "wind-up-crab-green.jpg"
+  },
+  {
+    "sku": "T2P-008",
+    "name": "Wind-up Crab - Orange",
+    "description": "Bring a pinch of joy to your day with this adorable wind-up crab - watch as it scuttles and spins, spreading smiles wherever it goes, and reminding you that fun is always just a wind-up away!",
+    "category": "toys",
+    "ticket_cost": 75,
+    "stock": 200,
+    "image": "wind-up-crab-orange.jpg"
+  },
+  {
+    "sku": "T2P-009",
+    "name": "Mini Butterfly Popit",
+    "description": "Flutter into a world of sensory delight with this charming butterfly-shaped Popit toy - a captivating way to embrace relaxation and endless popping pleasure!",
+    "category": "fidgets",
+    "ticket_cost": 100,
+    "stock": 200,
+    "image": "popit-mini-butterfly.jpg"
+  },
+  {
+    "sku": "T2P-010",
+    "name": "Mini Crab Popit",
+    "description": "Get your claws on endless entertainment with this adorable crab-shaped Popit toy - a pinch of fun that'll keep you happily popping away!",
+    "category": "fidgets",
+    "ticket_cost": 100,
+    "stock": 200,
+    "image": "popit-mini-crab.jpg"
+  },
+  {
+    "sku": "T2P-011",
+    "name": "Mini Unicorn Popit",
+    "description": "Experience whimsical enchantment in the palm of your hand with this mini unicorn Popit toy - a magical sensory delight that's impossible to resist!",
+    "category": "fidgets",
+    "ticket_cost": 100,
+    "stock": 200,
+    "image": "popit-mini-unicorn.jpg"
+  },
+  {
+    "sku": "T2P-012",
+    "name": "Mini Rainbow Flyer",
+    "description": "Add a dash of vibrant fun to your outdoor playtime with this mini rainbow frisbee - it's compact, colorful, and ready to soar through the skies, bringing smiles and laughter wherever it glides!",
+    "category": "outdoor",
+    "ticket_cost": 150,
+    "stock": 50,
+    "image": "flying-disc-mini-rainbow.jpg"
+  },
+  {
+    "sku": "T2P-013",
+    "name": "Inflatable Beachball - Basketball Design",
+    "description": "Shoot for beachside glory with this slam-dunk-worthy beachball, sporting a basketball design that's a guaranteed swish!",
+    "category": "outdoor",
+    "ticket_cost": 200,
+    "stock": 50,
+    "image": "inflatable-beachball-basketball.jpg"
+  },
+  {
+    "sku": "T2P-014",
+    "name": "Inflatable Beachball - Bright Design",
+    "description": "Turn up the beach party vibes with this eye-popping neon delight - the ultimate statement-maker for sun-soaked adventures.",
+    "category": "outdoor",
+    "ticket_cost": 200,
+    "stock": 50,
+    "image": "inflatable-beachball-bright.jpg"
+  },
+  {
+    "sku": "T2P-015",
+    "name": "Inflatable Beachball - Classic Design",
+    "description": "Unleash the retro vibes and bounce back to beachside fun with this classic-cool beachball.",
+    "category": "outdoor",
+    "ticket_cost": 200,
+    "stock": 50,
+    "image": "inflatable-beachball-classic.jpg"
+  },
+  {
+    "sku": "T2P-016",
+    "name": "Mini Glider - Blue",
+    "description": "Let your imagination take flight with this mini airplane glider toy - a pocket-sized marvel that soars through the air with grace and precision, turning any open space into your own sky-high adventure zone!",
+    "category": "outdoor",
+    "ticket_cost": 200,
+    "stock": 50,
+    "image": "glider-mini-blue.jpg"
+  },
+  {
+    "sku": "T2P-017",
+    "name": "Mini Glider - Blue & Orange",
+    "description": "Let your imagination take flight with this mini airplane glider toy - a pocket-sized marvel that soars through the air with grace and precision, turning any open space into your own sky-high adventure zone!",
+    "category": "outdoor",
+    "ticket_cost": 200,
+    "stock": 50,
+    "image": "glider-mini-blue-orange.jpg"
+  },
+  {
+    "sku": "T2P-018",
+    "name": "Mini Glider - Red",
+    "description": "Let your imagination take flight with this mini airplane glider toy - a pocket-sized marvel that soars through the air with grace and precision, turning any open space into your own sky-high adventure zone!",
+    "category": "outdoor",
+    "ticket_cost": 200,
+    "stock": 50,
+    "image": "glider-mini-red.jpg"
+  },
+  {
+    "sku": "T2P-019",
+    "name": "Glow Slime - Neon Green",
+    "description": "Dive into a mesmerizing world of gooey wonder with glow slime - it's like holding a galaxy in your hands, as it glows and stretches, offering a sensory experience that's truly out of this world!",
+    "category": "fidgets",
+    "ticket_cost": 250,
+    "stock": 50,
+    "image": "slime-glow-slime-green.jpg"
+  },
+  {
+    "sku": "T2P-020",
+    "name": "Glow Slime - Neon Pink",
+    "description": "Dive into a mesmerizing world of gooey wonder with glow slime - it's like holding a galaxy in your hands, as it glows and stretches, offering a sensory experience that's truly out of this world!",
+    "category": "fidgets",
+    "ticket_cost": 250,
+    "stock": 50,
+    "image": "slime-glow-slime-pink.jpg"
+  },
+  {
+    "sku": "T2P-021",
+    "name": "Light Up YoYo - Red",
+    "description": "Elevate your yoyo skills to a whole new level with this mesmerizing light-up yoyo - its radiant glow and smooth spins will illuminate the darkness and leave a trail of awe wherever you go!",
+    "category": "toys",
+    "ticket_cost": 250,
+    "stock": 50,
+    "image": "yoyo-lightup-red.jpg"
+  },
+  {
+    "sku": "T2P-022",
+    "name": "Light Up YoYo - Yellow",
+    "description": "Elevate your yoyo skills to a whole new level with this mesmerizing light-up yoyo - its radiant glow and smooth spins will illuminate the darkness and leave a trail of awe wherever you go!",
+    "category": "toys",
+    "ticket_cost": 250,
+    "stock": 50,
+    "image": "yoyo-lightup-yellow.jpg"
+  },
+  {
+    "sku": "T2P-023",
+    "name": "Mini Sports Balls",
+    "description": "Unleash your inner athlete with this pack of little mini sports balls - it's a powerhouse of fun in a pint-sized package, perfect for playtime anytime, anywhere!",
+    "category": "sports",
+    "ticket_cost": 300,
+    "stock": 0,
+    "image": "sports-equipment-mini-sports-balls.jpg"
+  },
+  {
+    "sku": "T2P-024",
+    "name": "Glitter Slime Lab",
+    "description": "Sparkle, create, and explore with the glitter slime lab - unleash your inner scientist and dive into a world of shimmering concoctions, where imagination and glitter collide in a dazzling display of hands-on fun!",
+    "category": "fidgets",
+    "ticket_cost": 350,
+    "stock": 50,
+    "image": "slime-glitter-slime-lab.jpg"
+  },
+  {
+    "sku": "T2P-025",
+    "name": "Liquid Motion Bubbler",
+    "description": "Get mesmerized by the captivating dance of colors and bubbles with the liquid motion bubbler - a sensory wonder that turns any space into a soothing oasis, providing relaxation and endless visual delight!",
+    "category": "fidgets",
+    "ticket_cost": 500,
+    "stock": 50,
+    "image": "liquid-motion-bubbler.jpg"
+  },
+  {
+    "sku": "T2P-026",
+    "name": "Super Mario Bros. - Yoshi Plushie",
+    "description": "Cuddle up with this adorable mini Yoshi plushie - a pint-sized companion bursting with cuteness and ready to embark on countless adventures in the Mushroom Kingdom and beyond!",
+    "category": "plush",
+    "ticket_cost": 750,
+    "stock": 15,
+    "image": "plushie-small-mario-bros-yoshi.jpg"
+  },
+  {
+    "sku": "T2P-027",
+    "name": "Pokemon - Pikachu Plushie",
+    "description": "Get electrified by the undeniable charm of this mini Pikachu plushie - a pocket-sized bundle of joy that brings the magic of Pokémon to your embrace, ready to be your loyal and lovable companion on all your adventures!",
+    "category": "plush",
+    "ticket_cost": 750,
+    "stock": 15,
+    "image": "plushie-small-pokemon-pikachu.jpg"
+  },
+  {
+    "sku": "T2P-028",
+    "name": "Spirited Away - Boh Mouse Plushie",
+    "description": "Bring a touch of whimsy and wonder into your world with this delightful mini Boh Mouse plushie from Spirited Away - a tiny embodiment of enchantment that will capture your heart and transport you to a realm of magical imagination!",
+    "category": "plush",
+    "ticket_cost": 750,
+    "stock": 0,
+    "image": "plushie-small-spirited-away-mouse.jpg"
+  },
+  {
+    "sku": "T2P-029",
+    "name": "Official NBA Basketball",
+    "description": "Step up your game with this official NBA basketball.",
+    "category": "sports",
+    "ticket_cost": 1000,
+    "stock": 15,
+    "image": "sports-equipment-basketball.jpg"
+  },
+  {
+    "sku": "T2P-030",
+    "name": "Official NFL Football",
+    "description": "Take your game to the gridiron with this official NFL football.",
+    "category": "sports",
+    "ticket_cost": 1000,
+    "stock": 15,
+    "image": "sports-equipment-football.jpg"
+  },
+  {
+    "sku": "T2P-031",
+    "name": "Official MLS Soccer Ball",
+    "description": "Kick up your soccer skills with this official MLS soccer ball",
+    "category": "sports",
+    "ticket_cost": 1000,
+    "stock": 15,
+    "image": "sports-equipment-soccer-ball.jpg"
+  },
+  {
+    "sku": "T2P-032",
+    "name": "Squishmallow - Flamingo",
+    "description": "Hug, squeeze, and squish your way to pure squishy bliss with this adorable Flamingo Squishmallow.",
+    "category": "plush",
+    "ticket_cost": 1000,
+    "stock": 15,
+    "image": "squishmallow-flamingo.jpg"
+  },
+  {
+    "sku": "T2P-033",
+    "name": "Squishmallow - Seashell",
+    "description": "Delight in the magic of the ocean with this seashell Squishmallow.",
+    "category": "plush",
+    "ticket_cost": 1000,
+    "stock": 15,
+    "image": "squishmallow-seashell.jpg"
+  },
+  {
+    "sku": "T2P-034",
+    "name": "Squishmallow - Whale",
+    "description": "Dive into a sea of comfort and coziness with this whale Squishmallow.",
+    "category": "plush",
+    "ticket_cost": 1000,
+    "stock": 15,
+    "image": "squishmallow-whale.jpg"
+  },
+  {
+    "sku": "T2P-035",
+    "name": "Q-Ba-Maze - Lights",
+    "description": "Immerse yourself in a mesmerizing world of glowing creativity with the Q-Ba-Maze Lights set - build, twist, and turn a labyrinth of illuminated pathways, where imagination and innovation shine bright!",
+    "category": "games",
+    "ticket_cost": 1500,
+    "stock": 15,
+    "image": "q-ba-maze-lights.jpg"
+  },
+  {
+    "sku": "T2P-036",
+    "name": "Q-Ba-Maze - Rails",
+    "description": "Unleash your engineering prowess with the Q-Ba-Maze Rails set - design gravity-defying marble runs that twist, turn, and race through a thrilling maze of tracks, igniting your imagination and challenging your problem-solving skills!",
+    "category": "games",
+    "ticket_cost": 1500,
+    "stock": 0,
+    "image": "q-ba-maze-rails.jpg"
+  },
+  {
+    "sku": "T2P-037",
+    "name": "Q-Ba-Maze - Stunts",
+    "description": "Prepare for a thrilling spectacle of gravity-defying stunts with the Q-Ba-Maze Stunts set - build jaw-dropping marble roller coasters, loop-de-loops, and daring jumps that defy the laws of physics, and let your creativity take center stage!",
+    "category": "games",
+    "ticket_cost": 1500,
+    "stock": 15,
+    "image": "q-ba-maze-stunts.jpg"
+  },
+  {
+    "sku": "T2P-038",
+    "name": "Giant Plushie Dog",
+    "description": "Snuggle up to this colossal canine companion - a giant dog plushie that's overflowing with cuddles and warmth, providing an abundance of love and comfort in a huggable package!",
+    "category": "plush",
+    "ticket_cost": 2000,
+    "stock": 15,
+    "image": "plushie-giant-dog.jpg"
+  },
+  {
+    "sku": "T2P-039",
+    "name": "Giant Plushie Bear",
+    "description": "Get ready for supersized snuggles with this giant plushie bear - a colossal cuddle buddy that's big on hugs, making every embrace a bear-iffic adventure in cozy companionship!",
+    "category": "plush",
+    "ticket_cost": 2000,
+    "stock": 0,
+    "image": "plushie-giant-teddy-bear.jpg"
+  },
+  {
+    "sku": "T2P-040",
+    "name": "Kids SmartWatch - Spider-man",
+    "description": "Loaded with kid-friendly features for your child to enjoy smart wearables just like the grown ups! However unlike smartwatches for adults, this watch is designed specifically with kids in mind.",
+    "category": "electronics",
+    "ticket_cost": 2500,
+    "stock": 15,
+    "image": "smartwatch-spiderman.jpg"
+  },
+  {
+    "sku": "T2P-041",
+    "name": "Kids SmartWatch - Trolls World Tour",
+    "description": "Loaded with kid-friendly features for your child to enjoy smart wearables just like the grown ups! However unlike smartwatches for adults, this watch is designed specifically with kids in mind.",
+    "category": "electronics",
+    "ticket_cost": 2500,
+    "stock": 15,
+    "image": "smartwatch-trolls-world-tour.jpg"
+  },
+  {
+    "sku": "T2P-042",
+    "name": "Nintendo Switch",
+    "description": "Unlock endless gaming possibilities with the Nintendo Switch - a revolutionary console that seamlessly transitions between handheld and TV modes, delivering immersive gameplay and taking your gaming experience to the next level!",
+    "category": "electronics",
+    "ticket_cost": 10000,
+    "stock": 3,
+    "image": "nintendo-switch.jpg"
+  },
+  {
+    "sku": "T2P-043",
+    "name": "Playstation 4",
+    "description": "Immerse yourself in the world of extraordinary gaming experiences with the PlayStation 4 - a powerhouse console that pushes boundaries, delivers stunning graphics, and offers a vast library of games, bringing excitement and entertainment right to your fingertips!",
+    "category": "electronics",
+    "ticket_cost": 10000,
+    "stock": 3,
+    "image": "playstation-4.jpg"
+  },
+  {
+    "sku": "T2P-044",
+    "name": "XBox One",
+    "description": "Enter a realm of gaming excellence with the Xbox One - a cutting-edge console that combines stunning visuals, immersive gameplay, and a world of entertainment options, providing endless hours of excitement and adventure for players of all ages!",
+    "category": "electronics",
+    "ticket_cost": 10000,
+    "stock": 3,
+    "image": "xbox-one.jpg"
+  }
+]
