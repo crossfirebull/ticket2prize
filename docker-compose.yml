@@ -1,4 +1,6 @@
 # Full stack on one machine: http://localhost:8080
+name: ticket2prize
+
 services:
   db:
     image: postgres:17-alpine
@@ -15,6 +17,7 @@ services:
 
   api:
     build: ./backend
+    image: ticket2prize-api
     environment:
       DATABASE_URL: postgresql+psycopg://ticket2prize:ticket2prize@db:5432/ticket2prize
       PUBLIC_BASE_URL: http://localhost:8080
@@ -27,6 +30,7 @@ services:
 
   web:
     build: ./frontend
+    image: ticket2prize-web
     volumes:
       - ./frontend/nginx/api-proxy.conf:/etc/nginx/conf.d/locations/api.conf:ro
     ports:

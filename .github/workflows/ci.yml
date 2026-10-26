@@ -1,0 +1,146 @@
+name: CI
+
+# Pushes to main run this via deploy.yml, so it isn't triggered twice.
+on:
+  pull_request:
+  workflow_call:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+jobs:
+  backend:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: backend
+    services:
+      postgres:
+        image: postgres:17-alpine
+        env:
+          POSTGRES_USER: ticket2prize
+          POSTGRES_PASSWORD: ticket2prize
+          POSTGRES_DB: ticket2prize
+        ports: ["5432:5432"]
+        options: >-
+          --health-cmd "pg_isready -U ticket2prize"
+          --health-interval 5s --health-retries 10
+    env:
+      DATABASE_URL: postgresql+psycopg://ticket2prize:ticket2prize@localhost:5432/ticket2prize
+      TEST_DATABASE_URL: postgresql+psycopg://ticket2prize:ticket2prize@localhost:5432/ticket2prize_test
+    steps:
+      - uses: actions/checkout@v7
+      - uses: astral-sh/setup-uv@v10.3.2
+        with:
+          enable-cache: true
+      - run: uv sync --frozen
+      - name: Lint
+        run: |
+          uv run ruff check .
+          uv run ruff format --check .
+      - name: Migrations apply cleanly and match the models
+        run: |
+          uv run alembic upgrade head
+          uv run alembic check
+          uv run alembic downgrade base
+      - name: Tests (Postgres, including race tests)
+        run: |
+          PGPASSWORD=ticket2prize psql -h localhost -U ticket2prize -c 'CREATE DATABASE ticket2prize_test'
+          uv run pytest -q
+
+  frontend:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: frontend
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+      - run: npm ci
+      - run: npm run lint
+      - run: npm run typecheck
+      - run: npm test
+      - run: npm run build
+
+  terraform:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: infra
+    steps:
+      - uses: actions/checkout@v7
+      - uses: hashicorp/setup-terraform@v4
+        with:
+          terraform_version: 1.16.7
+      - run: terraform fmt -check -recursive
+      - name: Validate every root module
+        run: |
+          for dir in bootstrap envs/dev envs/prod; do
+            terraform -chdir=$dir init -backend=false -input=false
+            terraform -chdir=$dir validate
+          done
+      - name: Module tests (mocked AWS)
+        working-directory: infra/modules/app
+        run: |
+          terraform init -backend=false -input=false
+          terraform test
+
+  # Build both images, scan them, and run the full stack end to end.
+  integration:
+    needs: [backend, frontend]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: docker/setup-buildx-action@v4
+      - name: Build API image
+        uses: docker/build-push-action@v7
+        with:
+          context: backend
+          load: true
+          tags: ticket2prize-api:ci
+          cache-from: type=gha,scope=api
+          cache-to: type=gha,scope=api,mode=max
+      - name: Build web image
+        uses: docker/build-push-action@v7
+        with:
+          context: frontend
+          load: true
+          tags: ticket2prize-web:ci
+          cache-from: type=gha,scope=web
+          cache-to: type=gha,scope=web,mode=max
+      - name: Scan API image for fixable critical CVEs
+        uses: aquasecurity/trivy-action@ed142fd0673e97e23eac54620cfb913e5ce36c25 # v0.36.0
+        with:
+          scan-type: image
+          image-ref: ticket2prize-api:ci
+          severity: CRITICAL
+          ignore-unfixed: true
+          exit-code: "1"
+      - name: Scan web image
+        uses: aquasecurity/trivy-action@ed142fd0673e97e23eac54620cfb913e5ce36c25 # v0.36.0
+        with:
+          scan-type: image
+          image-ref: ticket2prize-web:ci
+          severity: CRITICAL
+          ignore-unfixed: true
+          exit-code: "1"
+          skip-setup-trivy: true
+      - name: Start the stack
+        run: |
+          docker tag ticket2prize-api:ci ticket2prize-api
+          docker tag ticket2prize-web:ci ticket2prize-web
+          docker compose up -d --no-build --wait
+      - name: Smoke test
+        run: KIOSK_KEY=dev-kiosk-key scripts/smoke.sh http://localhost:8080
+      - name: Logs
+        if: failure()
+        run: docker compose logs
