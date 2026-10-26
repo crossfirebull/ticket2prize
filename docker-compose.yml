@@ -1,0 +1,38 @@
+# Full stack on one machine: http://localhost:8080
+services:
+  db:
+    image: postgres:17-alpine
+    environment:
+      POSTGRES_USER: ticket2prize
+      POSTGRES_PASSWORD: ticket2prize
+      POSTGRES_DB: ticket2prize
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ticket2prize"]
+      interval: 3s
+      retries: 20
+
+  api:
+    build: ./backend
+    environment:
+      DATABASE_URL: postgresql+psycopg://ticket2prize:ticket2prize@db:5432/ticket2prize
+      PUBLIC_BASE_URL: http://localhost:8080
+      SEED_DEMO_DATA: "true"
+    ports:
+      - "8000:8000"
+    depends_on:
+      db:
+        condition: service_healthy
+
+  web:
+    build: ./frontend
+    volumes:
+      - ./frontend/nginx/api-proxy.conf:/etc/nginx/conf.d/locations/api.conf:ro
+    ports:
+      - "8080:8080"
+    depends_on:
+      - api
+
+volumes:
+  pgdata:
