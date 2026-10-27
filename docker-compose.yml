@@ -1,4 +1,4 @@
-# Full stack on one machine: http://localhost:8080
+# Full stack on one machine: http://localhost:3000
 name: ticket2prize
 
 services:
@@ -8,6 +8,8 @@ services:
       POSTGRES_USER: ticket2prize
       POSTGRES_PASSWORD: ticket2prize
       POSTGRES_DB: ticket2prize
+    ports:
+      - "5432:5432"
     volumes:
       - pgdata:/var/lib/postgresql/data
     healthcheck:
@@ -15,28 +17,18 @@ services:
       interval: 3s
       retries: 20
 
-  api:
-    build: ./backend
-    image: ticket2prize-api
+  app:
+    build: .
+    image: ticket2prize
     environment:
-      DATABASE_URL: postgresql+psycopg://ticket2prize:ticket2prize@db:5432/ticket2prize
-      PUBLIC_BASE_URL: http://localhost:8080
+      DATABASE_URL: postgres://ticket2prize:ticket2prize@db:5432/ticket2prize
+      PUBLIC_BASE_URL: http://localhost:3000
       SEED_DEMO_DATA: "true"
     ports:
-      - "8000:8000"
+      - "3000:3000"
     depends_on:
       db:
         condition: service_healthy
-
-  web:
-    build: ./frontend
-    image: ticket2prize-web
-    volumes:
-      - ./frontend/nginx/api-proxy.conf:/etc/nginx/conf.d/locations/api.conf:ro
-    ports:
-      - "8080:8080"
-    depends_on:
-      - api
 
 volumes:
   pgdata:
