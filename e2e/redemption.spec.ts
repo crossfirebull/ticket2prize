@@ -43,6 +43,10 @@ test('scan a stub, shop, check out and see the pickup code', async ({ page }) =>
 
   // Nothing on the page should force sideways scrolling on a phone.
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true)
+
+  // Put the prizes back, so repeated runs against a deployment don't drain its stock.
+  await page.getByRole('button', { name: 'Cancel & refund' }).click()
+  await expect(page.getByTestId('balance')).toHaveText(/1,000/)
 })
 
 test('a stub only works once', async ({ page, browser }) => {

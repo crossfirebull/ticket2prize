@@ -9,21 +9,22 @@ resource "aws_sns_topic_subscription" "email" {
   endpoint  = var.alarm_email
 }
 
-# Business metrics pulled straight out of the API's JSON request logs.
+# Business metrics counted from the app's JSON event logs (src/lib/log.ts).
 locals {
   namespace = "Ticket2Prize/${var.environment}"
   log_metrics = {
-    Checkouts    = "{ $.path = \"/api/orders\" && $.method = \"POST\" && $.status = 201 }"
-    StubsClaimed = "{ $.path = \"/api/stubs/*/claim\" && $.status = 200 }"
-    StubsIssued  = "{ $.path = \"/api/kiosk/stubs\" && $.status = 201 }"
-    ServerErrors = "{ $.status >= 500 }"
+    StubsIssued    = "{ $.event = \"stub_issued\" }"
+    StubsClaimed   = "{ $.event = \"stub_claimed\" }"
+    Checkouts      = "{ $.event = \"checkout\" }"
+    OrdersPickedUp = "{ $.event = \"order_fulfilled\" }"
+    AppErrors      = "{ $.level = \"error\" }"
   }
 }
 
-resource "aws_cloudwatch_log_metric_filter" "api" {
+resource "aws_cloudwatch_log_metric_filter" "events" {
   for_each       = local.log_metrics
   name           = "${var.name}-${each.key}"
-  log_group_name = aws_cloudwatch_log_group.api.name
+  log_group_name = aws_cloudwatch_log_group.app.name
   pattern        = each.value
   metric_transformation {
     name          = each.key
@@ -36,29 +37,29 @@ resource "aws_cloudwatch_log_metric_filter" "api" {
 locals {
   alb_dim = { LoadBalancer = aws_lb.this.arn_suffix }
   alarms = {
-    api-5xx = {
-      description = "API returned 5xx responses"
+    app-5xx = {
+      description = "App returned 5xx responses"
       namespace   = "AWS/ApplicationELB"
       metric      = "HTTPCode_Target_5XX_Count"
       stat        = "Sum"
       threshold   = 5
-      dimensions  = merge(local.alb_dim, { TargetGroup = aws_lb_target_group.api.arn_suffix })
+      dimensions  = merge(local.alb_dim, { TargetGroup = aws_lb_target_group.app.arn_suffix })
     }
-    api-unhealthy = {
-      description = "API has unhealthy targets"
+    app-unhealthy = {
+      description = "App has unhealthy targets"
       namespace   = "AWS/ApplicationELB"
       metric      = "UnHealthyHostCount"
       stat        = "Maximum"
       threshold   = 0
-      dimensions  = merge(local.alb_dim, { TargetGroup = aws_lb_target_group.api.arn_suffix })
+      dimensions  = merge(local.alb_dim, { TargetGroup = aws_lb_target_group.app.arn_suffix })
     }
-    api-latency-p95 = {
-      description = "API p95 latency above 1s"
+    app-latency-p95 = {
+      description = "p95 response time above 1s"
       namespace   = "AWS/ApplicationELB"
       metric      = "TargetResponseTime"
       stat        = "p95"
       threshold   = 1
-      dimensions  = merge(local.alb_dim, { TargetGroup = aws_lb_target_group.api.arn_suffix })
+      dimensions  = merge(local.alb_dim, { TargetGroup = aws_lb_target_group.app.arn_suffix })
     }
     db-cpu = {
       description = "Database CPU above 80%"
@@ -119,31 +120,32 @@ resource "aws_cloudwatch_dashboard" "this" {
             [local.namespace, "StubsIssued"],
             [local.namespace, "StubsClaimed"],
             [local.namespace, "Checkouts"],
+            [local.namespace, "OrdersPickedUp"],
           ]
         }
       },
       {
         type = "metric", x = 12, y = 0, width = 12, height = 6
         properties = {
-          title  = "API requests and errors"
+          title  = "Requests and errors"
           region = data.aws_region.current.region
           stat   = "Sum"
           period = 60
           metrics = [
-            ["AWS/ApplicationELB", "RequestCount", "TargetGroup", aws_lb_target_group.api.arn_suffix, "LoadBalancer", aws_lb.this.arn_suffix],
-            ["AWS/ApplicationELB", "HTTPCode_Target_5XX_Count", "TargetGroup", aws_lb_target_group.api.arn_suffix, "LoadBalancer", aws_lb.this.arn_suffix],
-            ["AWS/ApplicationELB", "HTTPCode_Target_4XX_Count", "TargetGroup", aws_lb_target_group.api.arn_suffix, "LoadBalancer", aws_lb.this.arn_suffix],
+            ["AWS/ApplicationELB", "RequestCount", "TargetGroup", aws_lb_target_group.app.arn_suffix, "LoadBalancer", aws_lb.this.arn_suffix],
+            ["AWS/ApplicationELB", "HTTPCode_Target_5XX_Count", "TargetGroup", aws_lb_target_group.app.arn_suffix, "LoadBalancer", aws_lb.this.arn_suffix],
+            ["AWS/ApplicationELB", "HTTPCode_Target_4XX_Count", "TargetGroup", aws_lb_target_group.app.arn_suffix, "LoadBalancer", aws_lb.this.arn_suffix],
           ]
         }
       },
       {
         type = "metric", x = 0, y = 6, width = 12, height = 6
         properties = {
-          title  = "API latency"
+          title  = "Response time"
           region = data.aws_region.current.region
           period = 60
           metrics = [
-            ["AWS/ApplicationELB", "TargetResponseTime", "TargetGroup", aws_lb_target_group.api.arn_suffix, "LoadBalancer", aws_lb.this.arn_suffix, { stat = "p50" }],
+            ["AWS/ApplicationELB", "TargetResponseTime", "TargetGroup", aws_lb_target_group.app.arn_suffix, "LoadBalancer", aws_lb.this.arn_suffix, { stat = "p50" }],
             ["...", { stat = "p95" }],
             ["...", { stat = "p99" }],
           ]
@@ -157,9 +159,8 @@ resource "aws_cloudwatch_dashboard" "this" {
           stat   = "Average"
           period = 60
           metrics = [
-            ["AWS/ECS", "CPUUtilization", "ServiceName", aws_ecs_service.api.name, "ClusterName", aws_ecs_cluster.this.name],
-            ["AWS/ECS", "MemoryUtilization", "ServiceName", aws_ecs_service.api.name, "ClusterName", aws_ecs_cluster.this.name],
-            ["AWS/ECS", "CPUUtilization", "ServiceName", aws_ecs_service.web.name, "ClusterName", aws_ecs_cluster.this.name],
+            ["AWS/ECS", "CPUUtilization", "ServiceName", aws_ecs_service.app.name, "ClusterName", aws_ecs_cluster.this.name],
+            ["AWS/ECS", "MemoryUtilization", "ServiceName", aws_ecs_service.app.name, "ClusterName", aws_ecs_cluster.this.name],
           ]
         }
       },
@@ -179,9 +180,9 @@ resource "aws_cloudwatch_dashboard" "this" {
       {
         type = "log", x = 12, y = 12, width = 12, height = 6
         properties = {
-          title  = "Recent API errors"
+          title  = "Recent errors"
           region = data.aws_region.current.region
-          query  = "SOURCE '${aws_cloudwatch_log_group.api.name}' | fields ts, method, path, status, duration_ms | filter status >= 500 or level = 'ERROR' | sort @timestamp desc | limit 20"
+          query  = "SOURCE '${aws_cloudwatch_log_group.app.name}' | fields ts, event, error | filter level = 'error' | sort @timestamp desc | limit 20"
           view   = "table"
         }
       },

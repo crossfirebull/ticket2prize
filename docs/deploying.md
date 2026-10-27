@@ -10,10 +10,10 @@ Estimates for us-east-1; check current pricing before relying on them.
 | | dev | prod |
 | --- | --- | --- |
 | Load balancer | ~$18 | ~$18 |
-| Fargate (api + web) | ~$18 (2 small tasks) | ~$75 (4–8 tasks) |
+| Fargate | ~$9 (1 small task) | ~$40 (2–6 tasks) |
 | RDS Postgres | ~$15 (t4g.micro) | ~$60 (t4g.small, Multi-AZ) |
-| Public IPv4, Secrets Manager, CloudWatch | ~$15 | ~$25 |
-| **≈ per month** | **$65** | **$180** |
+| Public IPv4, Secrets Manager, CloudWatch | ~$12 | ~$20 |
+| **≈ per month** | **$55** | **$140** |
 
 `terraform destroy` in `infra/envs/dev` when you're not demoing it. Dev has no deletion
 protection, so it tears down cleanly.
@@ -26,8 +26,8 @@ terraform init
 terraform apply -var github_repository=crossfirebull/ticket2prize
 ```
 
-This creates the Terraform state bucket, the two ECR repositories, and the IAM role GitHub
-Actions assumes. Its own state is local. Keep `terraform.tfstate` from this folder somewhere
+This creates the Terraform state bucket, the ECR repository, and the IAM role GitHub Actions
+assumes. Its own state is local. Keep `terraform.tfstate` from this folder somewhere
 safe, or just re-import if you ever lose it.
 
 ## 2. Configure the GitHub repository
@@ -47,8 +47,9 @@ as a required reviewer, so releases wait for a click.
 
 ## 3. Deploy
 
-Merge to `main`. The **Deploy** workflow runs CI, pushes images tagged with the commit SHA,
-applies dev, runs a real redemption against it, then waits for approval to apply prod.
+Merge to `main`. The **Deploy** workflow runs CI, pushes an image tagged with the commit SHA,
+applies dev, runs the smoke test and the Playwright journeys against it, then waits for
+approval to apply prod.
 
 The first apply takes about 15 minutes, mostly creating RDS. Later deploys take about 4.
 
@@ -57,7 +58,8 @@ To redeploy an older build (a rollback), run the workflow manually with that com
 
 ## 4. After the first deploy
 
-**Get the kiosk key** your ticket machines (or the demo kiosk page) need:
+**Get the kiosk key** your ticket machines (or the demo kiosk page) need. It's deliberately
+not prefilled on the deployed kiosk page, since anyone with it can mint tickets:
 
 ```bash
 aws secretsmanager get-secret-value --secret-id ticket2prize-dev/app \
@@ -73,7 +75,7 @@ aws ecs run-task --launch-type FARGATE \
   --cluster "$(jq -r .cluster <<<"$t")" \
   --task-definition "$(jq -r .task_definition <<<"$t")" \
   --network-configuration "awsvpcConfiguration={subnets=[$(jq -r '.subnets|join(",")' <<<"$t")],securityGroups=[$(jq -r .security_group <<<"$t")],assignPublicIp=ENABLED}" \
-  --overrides '{"containerOverrides":[{"name":"api","command":["python","-m","app.cli","create-staff","you@example.com","a-long-password"]}]}'
+  --overrides '{"containerOverrides":[{"name":"app","command":["node","cli.mjs","create-staff","you@example.com","a-long-password"]}]}'
 ```
 
 The password ends up in the task's override history (visible in the ECS console and

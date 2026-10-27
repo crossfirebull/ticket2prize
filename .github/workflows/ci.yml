@@ -14,11 +14,8 @@ concurrency:
   cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
 jobs:
-  backend:
+  app:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: backend
     services:
       postgres:
         image: postgres:17-alpine
@@ -31,44 +28,23 @@ jobs:
           --health-cmd "pg_isready -U ticket2prize"
           --health-interval 5s --health-retries 10
     env:
-      DATABASE_URL: postgresql+psycopg://ticket2prize:ticket2prize@localhost:5432/ticket2prize
-      TEST_DATABASE_URL: postgresql+psycopg://ticket2prize:ticket2prize@localhost:5432/ticket2prize_test
-    steps:
-      - uses: actions/checkout@v7
-      - uses: astral-sh/setup-uv@v10.3.2
-        with:
-          enable-cache: true
-      - run: uv sync --frozen
-      - name: Lint
-        run: |
-          uv run ruff check .
-          uv run ruff format --check .
-      - name: Migrations apply cleanly and match the models
-        run: |
-          uv run alembic upgrade head
-          uv run alembic check
-          uv run alembic downgrade base
-      - name: Tests (Postgres, including race tests)
-        run: |
-          PGPASSWORD=ticket2prize psql -h localhost -U ticket2prize -c 'CREATE DATABASE ticket2prize_test'
-          uv run pytest -q
-
-  frontend:
-    runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: frontend
+      DATABASE_URL: postgres://ticket2prize:ticket2prize@localhost:5432/ticket2prize
+      TEST_DATABASE_URL: postgres://ticket2prize:ticket2prize@localhost:5432/ticket2prize_test
     steps:
       - uses: actions/checkout@v7
       - uses: actions/setup-node@v7
         with:
           node-version: 22
           cache: npm
-          cache-dependency-path: frontend/package-lock.json
       - run: npm ci
       - run: npm run lint
       - run: npm run typecheck
-      - run: npm test
+      - name: Migrations match the schema
+        run: |
+          npx drizzle-kit generate
+          test -z "$(git status --porcelain drizzle)" || { git status drizzle; echo "Run npm run db:generate and commit the migration"; exit 1; }
+      - name: Tests (Postgres, including race tests)
+        run: npm test
       - run: npm run build
 
   terraform:
@@ -94,53 +70,50 @@ jobs:
           terraform init -backend=false -input=false
           terraform test
 
-  # Build both images, scan them, and run the full stack end to end.
-  integration:
-    needs: [backend, frontend]
+  # Build the production image, scan it, and drive it in a real browser.
+  e2e:
+    needs: app
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: npm
       - uses: docker/setup-buildx-action@v4
-      - name: Build API image
-        uses: docker/build-push-action@v7
+      - uses: docker/build-push-action@v7
         with:
-          context: backend
+          context: .
           load: true
-          tags: ticket2prize-api:ci
-          cache-from: type=gha,scope=api
-          cache-to: type=gha,scope=api,mode=max
-      - name: Build web image
-        uses: docker/build-push-action@v7
-        with:
-          context: frontend
-          load: true
-          tags: ticket2prize-web:ci
-          cache-from: type=gha,scope=web
-          cache-to: type=gha,scope=web,mode=max
-      - name: Scan API image for fixable critical CVEs
+          tags: ticket2prize
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+      - name: Scan the image for fixable critical CVEs
         uses: aquasecurity/trivy-action@ed142fd0673e97e23eac54620cfb913e5ce36c25 # v0.36.0
         with:
           scan-type: image
-          image-ref: ticket2prize-api:ci
+          image-ref: ticket2prize
           severity: CRITICAL
           ignore-unfixed: true
           exit-code: "1"
-      - name: Scan web image
-        uses: aquasecurity/trivy-action@ed142fd0673e97e23eac54620cfb913e5ce36c25 # v0.36.0
-        with:
-          scan-type: image
-          image-ref: ticket2prize-web:ci
-          severity: CRITICAL
-          ignore-unfixed: true
-          exit-code: "1"
-          skip-setup-trivy: true
       - name: Start the stack
         run: |
-          docker tag ticket2prize-api:ci ticket2prize-api
-          docker tag ticket2prize-web:ci ticket2prize-web
           docker compose up -d --no-build --wait
-      - name: Smoke test
-        run: KIOSK_KEY=dev-kiosk-key scripts/smoke.sh http://localhost:8080
+          docker compose exec -T app node cli.mjs create-staff staff@example.com ci-staff-password
+      - run: scripts/smoke.sh http://localhost:3000
+        env:
+          KIOSK_KEY: dev-kiosk-key
+      - run: npm ci && npx playwright install --with-deps chromium
+      - run: npx playwright test
+        env:
+          E2E_BASE_URL: http://localhost:3000
+          E2E_STAFF_EMAIL: staff@example.com
+          E2E_STAFF_PASSWORD: ci-staff-password
+      - uses: actions/upload-artifact@v7
+        if: failure()
+        with:
+          name: playwright-report
+          path: playwright-report
       - name: Logs
         if: failure()
         run: docker compose logs

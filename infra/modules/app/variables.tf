@@ -13,16 +13,10 @@ variable "image_tag" {
   type        = string
 }
 
-variable "api_repository" {
-  description = "ECR repository name for the API image."
+variable "repository" {
+  description = "ECR repository holding the app image."
   type        = string
-  default     = "ticket2prize-api"
-}
-
-variable "web_repository" {
-  description = "ECR repository name for the web image."
-  type        = string
-  default     = "ticket2prize-web"
+  default     = "ticket2prize"
 }
 
 variable "vpc_cidr" {
@@ -42,29 +36,24 @@ variable "public_base_url" {
   default     = ""
 }
 
-variable "api_cpu" {
+variable "app_cpu" {
   type    = number
   default = 256
 }
 
-variable "api_memory" {
+variable "app_memory" {
   type    = number
   default = 512
 }
 
-variable "api_min_count" {
+variable "app_min_count" {
   type    = number
   default = 1
 }
 
-variable "api_max_count" {
+variable "app_max_count" {
   type    = number
   default = 2
-}
-
-variable "web_count" {
-  type    = number
-  default = 1
 }
 
 variable "db_instance_class" {

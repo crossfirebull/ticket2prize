@@ -7,8 +7,8 @@ output "cluster_name" {
   value = aws_ecs_cluster.this.name
 }
 
-output "api_task_definition" {
-  value = aws_ecs_task_definition.api.family
+output "task_definition" {
+  value = aws_ecs_task_definition.app.family
 }
 
 output "task_subnets" {

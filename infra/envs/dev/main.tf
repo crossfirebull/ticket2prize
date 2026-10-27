@@ -30,7 +30,7 @@ variable "alarm_email" {
   default = ""
 }
 
-# Smallest footprint: one task each, single-AZ database, easy teardown.
+# Smallest footprint: one app task, single-AZ database, easy teardown.
 module "app" {
   source      = "../../modules/app"
   name        = "ticket2prize-dev"
@@ -52,7 +52,7 @@ output "dashboard_url" {
 output "admin_task" {
   value = {
     cluster         = module.app.cluster_name
-    task_definition = module.app.api_task_definition
+    task_definition = module.app.task_definition
     subnets         = module.app.task_subnets
     security_group  = module.app.task_security_group
   }

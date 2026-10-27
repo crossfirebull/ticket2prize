@@ -80,8 +80,8 @@ resource "aws_vpc_security_group_egress_rule" "alb_to_tasks" {
   security_group_id            = aws_security_group.alb.id
   referenced_security_group_id = aws_security_group.tasks.id
   ip_protocol                  = "tcp"
-  from_port                    = 8000
-  to_port                      = 8080
+  from_port                    = 3000
+  to_port                      = 3000
 }
 
 resource "aws_security_group" "tasks" {
@@ -94,8 +94,8 @@ resource "aws_vpc_security_group_ingress_rule" "tasks_from_alb" {
   security_group_id            = aws_security_group.tasks.id
   referenced_security_group_id = aws_security_group.alb.id
   ip_protocol                  = "tcp"
-  from_port                    = 8000
-  to_port                      = 8080
+  from_port                    = 3000
+  to_port                      = 3000
 }
 
 # Image pulls, Secrets Manager and CloudWatch Logs.
@@ -117,7 +117,7 @@ resource "aws_vpc_security_group_egress_rule" "tasks_to_db" {
 
 resource "aws_security_group" "db" {
   name        = "${var.name}-db"
-  description = "Postgres: API tasks only"
+  description = "Postgres: app tasks only"
   vpc_id      = aws_vpc.this.id
 }
 

@@ -1,6 +1,6 @@
 name: Deploy
 
-# main -> CI -> build & push images -> dev (smoke tested) -> production (needs approval).
+# main -> CI -> build & push image -> dev (smoke + browser tested) -> production (needs approval).
 # Setup: see docs/deploying.md.
 on:
   push:
@@ -28,7 +28,7 @@ jobs:
     if: ${{ !inputs.image_tag }}
     uses: ./.github/workflows/ci.yml
 
-  images:
+  image:
     needs: ci
     # Deploy jobs stay skipped until the AWS bootstrap is done (docs/deploying.md).
     if: ${{ !inputs.image_tag && vars.AWS_DEPLOY_ROLE_ARN != '' }}
@@ -44,19 +44,13 @@ jobs:
       - uses: docker/setup-buildx-action@v4
       - uses: docker/build-push-action@v7
         with:
-          context: backend
+          context: .
           push: true
-          tags: ${{ steps.ecr.outputs.registry }}/ticket2prize-api:${{ env.IMAGE_TAG }}
-          cache-from: type=gha,scope=api
-      - uses: docker/build-push-action@v7
-        with:
-          context: frontend
-          push: true
-          tags: ${{ steps.ecr.outputs.registry }}/ticket2prize-web:${{ env.IMAGE_TAG }}
-          cache-from: type=gha,scope=web
+          tags: ${{ steps.ecr.outputs.registry }}/ticket2prize:${{ env.IMAGE_TAG }}
+          cache-from: type=gha
 
   dev:
-    needs: images
+    needs: image
     if: ${{ !cancelled() && !failure() && vars.AWS_DEPLOY_ROLE_ARN != '' }}
     runs-on: ubuntu-latest
     environment:
@@ -79,12 +73,27 @@ jobs:
           terraform apply -input=false -auto-approve -var "image_tag=$IMAGE_TAG" \
             -var "alarm_email=${{ vars.ALARM_EMAIL }}"
           echo "url=$(terraform output -raw url)" >> "$GITHUB_OUTPUT"
-      - name: Smoke test (full redemption)
+      - id: kiosk
+        name: Fetch the kiosk key
         run: |
-          KIOSK_KEY=$(aws secretsmanager get-secret-value --secret-id ticket2prize-dev/app \
+          key=$(aws secretsmanager get-secret-value --secret-id ticket2prize-dev/app \
             --query SecretString --output text | jq -r .kiosk_keys)
-          echo "::add-mask::$KIOSK_KEY"
-          KIOSK_KEY=$KIOSK_KEY scripts/smoke.sh "${{ steps.apply.outputs.url }}"
+          echo "::add-mask::$key"
+          echo "key=$key" >> "$GITHUB_OUTPUT"
+      - run: scripts/smoke.sh "${{ steps.apply.outputs.url }}"
+        env:
+          KIOSK_KEY: ${{ steps.kiosk.outputs.key }}
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: npm
+      - name: Browser tests against dev
+        run: |
+          npm ci && npx playwright install --with-deps chromium
+          npx playwright test
+        env:
+          E2E_BASE_URL: ${{ steps.apply.outputs.url }}
+          E2E_KIOSK_KEY: ${{ steps.kiosk.outputs.key }}
 
   production:
     needs: dev

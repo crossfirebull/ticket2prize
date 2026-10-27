@@ -11,30 +11,15 @@ resource "aws_lb" "this" {
   drop_invalid_header_fields = true
 }
 
-resource "aws_lb_target_group" "api" {
-  name                 = "${var.name}-api"
-  port                 = 8000
+resource "aws_lb_target_group" "app" {
+  name                 = "${var.name}-app"
+  port                 = 3000
   protocol             = "HTTP"
   target_type          = "ip"
   vpc_id               = aws_vpc.this.id
   deregistration_delay = 15
   health_check {
-    path                = "/healthz"
-    healthy_threshold   = 2
-    unhealthy_threshold = 3
-    interval            = 15
-  }
-}
-
-resource "aws_lb_target_group" "web" {
-  name                 = "${var.name}-web"
-  port                 = 8080
-  protocol             = "HTTP"
-  target_type          = "ip"
-  vpc_id               = aws_vpc.this.id
-  deregistration_delay = 15
-  health_check {
-    path                = "/nginx-health"
+    path                = "/api/healthz"
     healthy_threshold   = 2
     unhealthy_threshold = 3
     interval            = 15
@@ -48,7 +33,7 @@ resource "aws_lb_listener" "http" {
 
   default_action {
     type             = local.https ? "redirect" : "forward"
-    target_group_arn = local.https ? null : aws_lb_target_group.web.arn
+    target_group_arn = local.https ? null : aws_lb_target_group.app.arn
     dynamic "redirect" {
       for_each = local.https ? [1] : []
       content {
@@ -70,22 +55,6 @@ resource "aws_lb_listener" "https" {
 
   default_action {
     type             = "forward"
-    target_group_arn = aws_lb_target_group.web.arn
-  }
-}
-
-locals {
-  serving_listener_arn = local.https ? aws_lb_listener.https[0].arn : aws_lb_listener.http.arn
-}
-
-resource "aws_lb_listener_rule" "api" {
-  listener_arn = local.serving_listener_arn
-  priority     = 10
-  action {
-    type             = "forward"
-    target_group_arn = aws_lb_target_group.api.arn
-  }
-  condition {
-    path_pattern { values = ["/api/*"] }
+    target_group_arn = aws_lb_target_group.app.arn
   }
 }

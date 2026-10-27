@@ -6,16 +6,16 @@
 sequenceDiagram
     participant K as Kiosk
     participant C as Customer
-    participant A as API
+    participant A as App
     participant S as Staff
     K->>A: POST /api/kiosk/stubs {tickets} (X-Kiosk-Key)
     A-->>K: code, claim_url → printed as QR
-    C->>A: POST /api/stubs/{code}/claim
-    A-->>C: token + balance (guest wallet, or their account's)
-    C->>A: POST /api/orders {items}
+    C->>A: open /claim/{code}, tap "Add tickets"
+    A-->>C: session cookie (guest wallet, or their account's)
+    C->>A: check out cart
     A-->>C: pickup code
-    S->>A: GET /api/staff/orders/by-code/{code}
-    S->>A: POST /api/staff/orders/{id}/fulfill
+    S->>A: /staff?code={code}
+    S->>A: hand over prizes
 ```
 
 This follows the original 2023 data-flow diagram, with one change: guests can shop
@@ -40,7 +40,7 @@ becomes "create an account", and their wallet moves over with them.
 or affects zero rows; there is no window where two requests both see enough tickets. Stock
 and stub claims work the same way. Checkout does all of it in one transaction, so an
 out-of-stock item rolls back the ticket deduction. The DB `CHECK` constraints are a second
-line of defence. `tests/test_concurrency.py` proves it against real Postgres.
+line of defence. `src/lib/concurrency.test.ts` proves it against real Postgres.
 
 **The stub code is the secret.** It's 16 random URL-safe characters (96 bits), so stubs
 can't be guessed or enumerated, and claiming is one-shot. The 2023 prototype encoded
@@ -53,12 +53,20 @@ can't be guessed or enumerated, and claiming is one-shot. The 2023 prototype enc
 ledger explains how it got there. It's what you'd use to chase "shrink", which the original
 SOW called out as a goal.
 
-**Tokens are JWTs that name a wallet.** One token type covers guests and accounts (the
-account id is an extra claim). Signing in with a guest token merges the guest's tickets and
-orders into the account.
+**Sessions are signed, HTTP-only cookies that name a wallet.** One session type covers
+guests and accounts (the account id is an extra claim). Page scripts can't read the cookie,
+so an injected script couldn't steal a session. Signing in from a guest session merges the
+guest's tickets and orders into the account.
 
-**Migrations run on boot, under a Postgres advisory lock.** Every API task runs
-`alembic upgrade head` before starting. The lock means that when ECS starts several tasks at
+**One app, three ways in.** Pages are React server components that read Postgres directly.
+Everything a person does (claim, check out, sign in, staff actions) is a server action that
+checks the session itself, then calls a plain function in `src/lib`. A small HTTP API
+remains for machines: the kiosk (`POST /api/kiosk/stubs`), stub QR codes, the public catalog
+(`GET /api/prizes`) and health probes. The domain functions know nothing about Next.js,
+which is why the tests can call them directly.
+
+**Migrations run on boot, under a Postgres advisory lock.** Every app task runs
+`node cli.mjs migrate` before starting the server. The lock means that when ECS starts several tasks at
 once, one migrates and the rest wait. No separate migration job to orchestrate.
 
 ## Infrastructure
@@ -69,15 +77,13 @@ flowchart TB
     subgraph VPC
       subgraph Public subnets x2
         ALB[Application Load Balancer]
-        W[web tasks<br/>nginx + React]
-        A[api tasks<br/>FastAPI]
+        A[app tasks<br/>Next.js]
       end
       subgraph Private subnets x2
         DB[(RDS Postgres)]
       end
     end
-    ALB -- "/*" --> W
-    ALB -- "/api/*" --> A
+    ALB --> A
     A --> DB
     A -. secrets .-> SM[Secrets Manager]
     A -. logs .-> CW[CloudWatch]
@@ -92,18 +98,26 @@ flowchart TB
   Terraform into a second secret. ECS injects both at container start.
 - **Deploys roll back on their own.** ECS deployment circuit breakers revert to the last
   healthy task definition if new tasks fail health checks.
-- **The API scales on CPU** (target 60%, 1–2 tasks in dev, 2–6 in prod).
+- **The app scales on CPU** (target 60%, 1–2 tasks in dev, 2–6 in prod).
 - **CI deploys through GitHub OIDC.** No AWS keys are stored in GitHub. The deploy role
   trusts only this repo's `main` branch and its `dev`/`production` environments.
 
 ## Observability
 
-- **Logs:** one JSON object per request (`request_id`, `method`, `path`, `status`,
-  `duration_ms`), queryable directly in CloudWatch Logs Insights.
-- **Metrics:** CloudWatch metric filters turn those logs into business metrics:
-  `StubsIssued`, `StubsClaimed`, `Checkouts`, `ServerErrors`. The API also serves Prometheus
-  metrics at `/metrics`, which isn't routed through the ALB. Scrape it with an ADOT sidecar
-  if you add Prometheus.
-- **Dashboard:** redemptions, API traffic and errors, p50/p95/p99 latency, ECS CPU/memory,
+- **Logs:** one JSON object per domain event (`stub_issued`, `stub_claimed`, `checkout`,
+  `order_fulfilled`, `order_cancelled`) and per unexpected error, queryable directly in
+  CloudWatch Logs Insights.
+- **Metrics:** CloudWatch metric filters turn those events into business metrics:
+  `StubsIssued`, `StubsClaimed`, `Checkouts`, `OrdersPickedUp`, `AppErrors`. The load
+  balancer supplies request counts, status codes and response times.
+- **Dashboard:** redemptions, traffic and errors, p50/p95/p99 response time, ECS CPU/memory,
   database load, and a live table of recent errors.
-- **Alarms → SNS (email):** API 5xx, unhealthy targets, p95 > 1s, DB CPU > 80%, DB storage < 2 GB.
+- **Alarms → SNS (email):** 5xx responses, unhealthy targets, p95 > 1s, DB CPU > 80%,
+  DB storage < 2 GB.
+
+## History
+
+The first rebuild (October 2026) was a FastAPI backend plus a separate React single-page
+app, two containers behind path-based routing. It was merged into this single Next.js app so
+there's one language, one container and no API layer between the pages and the data. That
+version is still in git history on the `rebuild` branch.

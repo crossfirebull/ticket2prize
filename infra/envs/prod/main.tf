@@ -53,11 +53,10 @@ module "app" {
   certificate_arn = var.certificate_arn
   public_base_url = var.public_base_url
 
-  api_cpu       = 512
-  api_memory    = 1024
-  api_min_count = 2
-  api_max_count = 6
-  web_count     = 2
+  app_cpu       = 512
+  app_memory    = 1024
+  app_min_count = 2
+  app_max_count = 6
 
   db_instance_class        = "db.t4g.small"
   db_multi_az              = true
@@ -78,7 +77,7 @@ output "dashboard_url" {
 output "admin_task" {
   value = {
     cluster         = module.app.cluster_name
-    task_definition = module.app.api_task_definition
+    task_definition = module.app.task_definition
     subnets         = module.app.task_subnets
     security_group  = module.app.task_security_group
   }

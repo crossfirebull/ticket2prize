@@ -1,6 +1,6 @@
 # One-time setup per AWS account, applied by hand with local state:
 #   terraform init && terraform apply -var github_repository=OWNER/REPO
-# Creates the remote-state bucket, the image repositories, and the role GitHub
+# Creates the remote-state bucket, the image repository, and the role GitHub
 # Actions assumes (via OIDC, no long-lived keys) to deploy.
 
 terraform {
@@ -66,8 +66,7 @@ resource "aws_s3_bucket_public_access_block" "state" {
 # --- Container images ----------------------------------------------------------
 
 resource "aws_ecr_repository" "app" {
-  for_each             = toset(["ticket2prize-api", "ticket2prize-web"])
-  name                 = each.key
+  name                 = "ticket2prize"
   image_tag_mutability = "IMMUTABLE"
   image_scanning_configuration {
     scan_on_push = true
@@ -75,8 +74,7 @@ resource "aws_ecr_repository" "app" {
 }
 
 resource "aws_ecr_lifecycle_policy" "app" {
-  for_each   = aws_ecr_repository.app
-  repository = each.value.name
+  repository = aws_ecr_repository.app.name
   policy = jsonencode({
     rules = [{
       rulePriority = 1
@@ -141,6 +139,6 @@ output "deploy_role_arn" {
   value       = aws_iam_role.deploy.arn
 }
 
-output "ecr_registry" {
-  value = split("/", aws_ecr_repository.app["ticket2prize-api"].repository_url)[0]
+output "ecr_repository_url" {
+  value = aws_ecr_repository.app.repository_url
 }

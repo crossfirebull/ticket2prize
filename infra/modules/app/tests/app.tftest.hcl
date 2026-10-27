@@ -72,12 +72,20 @@ run "dev_defaults" {
     error_message = "QR codes should point at the load balancer by default"
   }
   assert {
-    condition     = strcontains(aws_ecs_task_definition.api.container_definitions, "repo:abc123")
-    error_message = "API task should run the requested image tag"
+    condition     = strcontains(aws_ecs_task_definition.app.container_definitions, "repo:abc123")
+    error_message = "The task should run the requested image tag"
   }
   assert {
-    condition     = !strcontains(aws_ecs_task_definition.api.container_definitions, "\"name\":\"DB_PASSWORD\",\"value\"")
+    condition     = !strcontains(aws_ecs_task_definition.app.container_definitions, "\"name\":\"DB_PASSWORD\",\"value\"")
     error_message = "The database password must come from Secrets Manager, not plain env"
+  }
+  assert {
+    condition     = !strcontains(aws_ecs_task_definition.app.container_definitions, "\"name\":\"SESSION_SECRET\",\"value\"")
+    error_message = "The session key must come from Secrets Manager, not plain env"
+  }
+  assert {
+    condition     = aws_lb_target_group.app.health_check[0].path == "/api/healthz" && aws_lb_target_group.app.port == 3000
+    error_message = "The load balancer should health-check the Next.js server"
   }
 }
 
@@ -97,8 +105,8 @@ run "prod_hardening" {
     error_message = "With a certificate, HTTP should redirect to HTTPS"
   }
   assert {
-    condition     = aws_lb_listener_rule.api.listener_arn == aws_lb_listener.https[0].arn
-    error_message = "API routing should live on the HTTPS listener"
+    condition     = aws_lb_listener.https[0].default_action[0].target_group_arn == aws_lb_target_group.app.arn
+    error_message = "HTTPS should serve the app"
   }
   assert {
     condition     = aws_db_instance.this.deletion_protection && !aws_db_instance.this.skip_final_snapshot
